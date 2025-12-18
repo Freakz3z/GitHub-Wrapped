@@ -18,7 +18,7 @@ GitHub Wrapped is a personalized year-in-review for developers. It analyzes your
 
 ## 🚀 How to Use
 
-1. **Connect**: Visit the [app](https://githubwrapped-n1v6z09gg-freakz3zs-projects.vercel.app) and sign in with your GitHub account.
+1. **Connect**: Visit the [app](https://githubwrapped-delta.vercel.app) and sign in with your GitHub account.
 2. **Explore**: Scroll through your personalized dashboard to see your stats and insights.
 3. **Share**: Click the "Download" button to save your Wrapped card and share it with the community using `#GitHubWrapped`.
 
