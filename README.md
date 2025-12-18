@@ -4,7 +4,7 @@
 
 GitHub Wrapped is a personalized year-in-review for developers. It analyzes your GitHub activity over the past year and generates a beautiful, shareable summary of your coding journey.
 
-[**🚀 Launch App**](https://githubwrapped-n1v6z09gg-freakz3zs-projects.vercel.app)
+[**🚀 Launch App**](https://githubwrapped-delta.vercel.app)
 
 ---
 
@@ -60,8 +60,4 @@ Want to host your own version or contribute?
 ## 🤝 Contributing
 
 Contributions are welcome! Feel free to open issues or submit pull requests.
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
 

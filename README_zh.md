@@ -4,7 +4,7 @@
 
 GitHub Wrapped 是一款专为开发者打造的年度总结工具。它分析你过去一年的 GitHub 活动，生成一份精美、可分享的编程旅程总结。
 
-[**🚀 立即体验**](https://githubwrapped-n1v6z09gg-freakz3zs-projects.vercel.app)
+[**🚀 立即体验**](https://githubwrapped-delta.vercel.app)
 
 ---
 
@@ -60,8 +60,4 @@ GitHub Wrapped 是一款专为开发者打造的年度总结工具。它分析�
 ## 🤝 贡献
 
 欢迎提交 Issue 或 Pull Request 来改进这个项目！
-
-## 📄 许可证
-
-本项目开源并遵循 [MIT License](LICENSE) 许可证。
 
