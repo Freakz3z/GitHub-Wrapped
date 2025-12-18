@@ -13,7 +13,7 @@ export default function LanguageChart({ data }: Props) {
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
           <Pie
-            data={data}
+            data={data as any}
             cx="50%"
             cy="50%"
             innerRadius={60}
@@ -28,7 +28,7 @@ export default function LanguageChart({ data }: Props) {
           <Tooltip 
             contentStyle={{ backgroundColor: '#1f2937', border: 'none', borderRadius: '0.5rem', color: '#fff' }}
             itemStyle={{ color: '#fff' }}
-            formatter={(value: number) => [`${value} bytes`, 'Size']}
+            formatter={(value: any) => [`${value} bytes`, 'Size']}
           />
           <Legend 
             verticalAlign="bottom" 
