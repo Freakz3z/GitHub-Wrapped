@@ -4,8 +4,8 @@ import GithubProvider from "next-auth/providers/github";
 export const authOptions: NextAuthOptions = {
   providers: [
     GithubProvider({
-      clientId: process.env.GITHUB_ID ?? "",
-      clientSecret: process.env.GITHUB_SECRET ?? "",
+      clientId: process.env.GITHUB_ID || "dummy_id",
+      clientSecret: process.env.GITHUB_SECRET || "dummy_secret",
       authorization: {
         params: {
           scope: "read:user user:email repo",
@@ -13,6 +13,7 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   ],
+  secret: process.env.NEXTAUTH_SECRET || "dummy_secret_for_build",
   callbacks: {
     async jwt({ token, account }) {
       if (account) {
