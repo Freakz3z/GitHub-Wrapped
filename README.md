@@ -1,66 +1,41 @@
 # GitHub Wrapped 2025 🎁
 
-Discover your coding year in review! GitHub Wrapped generates a beautiful, shareable summary of your GitHub activity for the past year.
+**Your Year in Code, Visualized.**
 
-[**View Live Demo**](https://github-wrapped.vercel.app)
+GitHub Wrapped 2025 is a personalized year-in-review for developers. It analyzes your GitHub activity over the past year and generates a beautiful, shareable summary of your coding journey.
+
+[**🚀 Launch App**](https://githubwrapped-n1v6z09gg-freakz3zs-projects.vercel.app)
+
+---
 
 ## ✨ Features
 
-- **📊 Comprehensive Stats**: See your total contributions, stars earned, PRs merged, and more.
-- **📅 Contribution Heatmap**: A beautiful visualization of your daily coding activity.
-- **🏆 Top Languages**: Find out which languages you dominated this year.
-- **🖼️ Shareable Card**: Generate a sleek image to share on Twitter, LinkedIn, or Bluesky.
-- **🔒 Privacy First**: We only request read-only access. Your data is processed locally and never stored on our servers.
+- **📊 Comprehensive Stats**: Get a snapshot of your total contributions, stars earned, pull requests merged, and issues opened.
+- **📅 Contribution Heatmap**: Visualize your daily coding intensity with a stunning heatmap.
+- **🏆 Top Languages**: Discover which programming languages defined your year.
+- **🖼️ Shareable Card**: Generate a sleek, professional image perfect for sharing on Twitter/X, LinkedIn, and Bluesky.
+- **🔒 Privacy First**: We value your privacy. The app requests **read-only** access to your public data. No personal data is stored on our servers.
 
 ## 🚀 How to Use
 
-1. Visit the [website](https://github-wrapped.vercel.app).
-2. Click **"Connect with GitHub"**.
-3. View your personalized dashboard.
-4. Click the **Download** button to get your wrapped image!
+1. **Connect**: Visit the [app](https://githubwrapped-n1v6z09gg-freakz3zs-projects.vercel.app) and sign in with your GitHub account.
+2. **Explore**: Scroll through your personalized dashboard to see your stats and insights.
+3. **Share**: Click the "Download" button to save your Wrapped card and share it with the community using `#GitHubWrapped2025`.
 
-## 🛠️ Deploy Your Own
+## 🛠️ For Developers: Deploy Your Own
 
-Want to host your own version? You can deploy this project to Vercel in minutes for free.
+Want to host your own version or contribute?
 
-### Prerequisites
-- A GitHub account.
-- A Vercel account.
+### One-Click Deploy
 
-### Step-by-Step Guide
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FFreakz3z%2FGitHub-Wrapped)
 
-1. **Fork this repository** to your GitHub account.
-
-2. **Create a GitHub OAuth App**:
-   - Go to [GitHub Developer Settings](https://github.com/settings/developers).
-   - Click **New OAuth App**.
-   - **Application Name**: `My GitHub Wrapped`
-   - **Homepage URL**: `https://<your-project-name>.vercel.app` (You'll get this after deployment, for now you can use a placeholder or update it later).
-   - **Authorization callback URL**: `https://<your-project-name>.vercel.app/api/auth/callback/github`
-   - Click **Register application**.
-   - Copy the **Client ID** and generate a new **Client Secret**.
-
-3. **Deploy to Vercel**:
-   - Click the button below to start deployment:
-   
-   [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FFreakz3z%2FGitHub-Wrapped)
-
-   - Vercel will ask for Environment Variables. Enter the ones you got from GitHub:
-     - `GITHUB_ID`: Your Client ID.
-     - `GITHUB_SECRET`: Your Client Secret.
-     - `NEXTAUTH_SECRET`: Generate a random string (e.g. `openssl rand -base64 32` or just a long random password).
-     - `NEXTAUTH_URL`: Your Vercel URL (e.g., `https://your-project.vercel.app`).
-
-4. **Finalize Configuration**:
-   - Once deployed, Vercel will give you a domain (e.g., `project-name.vercel.app`).
-   - Go back to your **GitHub OAuth App settings** and update the **Homepage URL** and **Authorization callback URL** with your actual Vercel domain.
-
-## 💻 Local Development
+### Local Development
 
 1. **Clone the repository**:
    ```bash
    git clone https://github.com/Freakz3z/GitHub-Wrapped.git
-   cd github-wrapped-app
+   cd GitHub-Wrapped
    ```
 
 2. **Install dependencies**:
@@ -68,25 +43,25 @@ Want to host your own version? You can deploy this project to Vercel in minutes 
    npm install
    ```
 
-3. **Configure Environment Variables**:
-   - Copy `.env.local.example` to `.env.local`.
-   - Fill in the `GITHUB_ID` and `GITHUB_SECRET` from your new OAuth App (set callback URL to `http://localhost:3000/api/auth/callback/github`).
-   - Generate a random string for `NEXTAUTH_SECRET`.
+3. **Configure Environment**:
+   Create a `.env.local` file with the following:
+   ```env
+   GITHUB_ID=your_github_client_id
+   GITHUB_SECRET=your_github_client_secret
+   NEXTAUTH_SECRET=your_random_secret
+   NEXTAUTH_URL=http://localhost:3000
+   ```
 
-4. **Run the application**:
+4. **Run the app**:
    ```bash
    npm run dev
    ```
 
-5. **Open http://localhost:3000** in your browser.
+## 🤝 Contributing
 
-## Tech Stack
+Contributions are welcome! Feel free to open issues or submit pull requests.
 
-- **Framework**: Next.js 14 (App Router)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **Auth**: NextAuth.js
-- **Data**: GitHub GraphQL API
-- **Charts**: Recharts, React Activity Calendar
-- **Image Gen**: html2canvas
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
 
