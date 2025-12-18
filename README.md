@@ -1,8 +1,8 @@
-# GitHub Wrapped 2025 🎁
+# GitHub Wrapped 🎁
 
 **Your Year in Code, Visualized.**
 
-GitHub Wrapped 2025 is a personalized year-in-review for developers. It analyzes your GitHub activity over the past year and generates a beautiful, shareable summary of your coding journey.
+GitHub Wrapped is a personalized year-in-review for developers. It analyzes your GitHub activity over the past year and generates a beautiful, shareable summary of your coding journey.
 
 [**🚀 Launch App**](https://githubwrapped-n1v6z09gg-freakz3zs-projects.vercel.app)
 
@@ -20,7 +20,7 @@ GitHub Wrapped 2025 is a personalized year-in-review for developers. It analyzes
 
 1. **Connect**: Visit the [app](https://githubwrapped-n1v6z09gg-freakz3zs-projects.vercel.app) and sign in with your GitHub account.
 2. **Explore**: Scroll through your personalized dashboard to see your stats and insights.
-3. **Share**: Click the "Download" button to save your Wrapped card and share it with the community using `#GitHubWrapped2025`.
+3. **Share**: Click the "Download" button to save your Wrapped card and share it with the community using `#GitHubWrapped`.
 
 ## 🛠️ For Developers: Deploy Your Own
 

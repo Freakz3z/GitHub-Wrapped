@@ -3,7 +3,7 @@ import "./globals.css";
 import Providers from "@/components/Providers";
 
 export const metadata: Metadata = {
-  title: "GitHub Wrapped 2025",
+  title: "GitHub Wrapped",
   description: "Your year in code review.",
 };
 

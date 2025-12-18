@@ -1,8 +1,8 @@
-# GitHub Wrapped 2025 🎁
+# GitHub Wrapped 🎁
 
 **你的年度代码之旅，可视化呈现。**
 
-GitHub Wrapped 2025 是一款专为开发者打造的年度总结工具。它分析你过去一年的 GitHub 活动，生成一份精美、可分享的编程旅程总结。
+GitHub Wrapped 是一款专为开发者打造的年度总结工具。它分析你过去一年的 GitHub 活动，生成一份精美、可分享的编程旅程总结。
 
 [**🚀 立即体验**](https://githubwrapped-n1v6z09gg-freakz3zs-projects.vercel.app)
 
@@ -20,7 +20,7 @@ GitHub Wrapped 2025 是一款专为开发者打造的年度总结工具。它分
 
 1. **连接账号**：访问 [应用主页](https://githubwrapped-n1v6z09gg-freakz3zs-projects.vercel.app) 并使用 GitHub 账号登录。
 2. **探索数据**：浏览你的个性化仪表盘，查看各项统计数据和洞察。
-3. **分享成就**：点击“下载图片”按钮保存你的年度总结卡片，并使用 `#GitHubWrapped2025` 标签分享给社区。
+3. **分享成就**：点击“下载图片”按钮保存你的年度总结卡片，并使用 `#GitHubWrapped` 标签分享给社区。
 
 ## 🛠️ 开发者指南：部署你自己的版本
 

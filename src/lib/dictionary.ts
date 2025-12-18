@@ -8,7 +8,7 @@ export const dictionary = {
       signOut: "Sign out",
     },
     home: {
-      title: "GitHub Wrapped 2025",
+      title: "GitHub Wrapped",
       subtitle: "Discover your coding journey over the past year. Visualize your contributions, top languages, and most active repositories in a beautiful summary.",
       error: "Error loading data",
       retry: "Please try signing out and signing in again.",
@@ -67,7 +67,7 @@ export const dictionary = {
       signOut: "退出登录",
     },
     home: {
-      title: "GitHub 2025 年度总结",
+      title: "GitHub 年度总结",
       subtitle: "探索你过去一年的编程旅程。通过精美的总结可视化你的贡献、常用语言和最活跃的仓库。",
       error: "加载数据失败",
       retry: "请尝试退出并重新登录。",
