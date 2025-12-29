@@ -19,13 +19,30 @@ export default function Home() {
       
       const response = await fetch("/api/session");
       if (!response.ok) {
-        throw new Error("Not authenticated");
+        setError("Authentication failed. Please sign in.");
+        setIsLoading(false);
+        return;
       }
       
       const session = await response.json();
       
-      if (!session || !session.accessToken) {
-        setError("Please log in with GitHub");
+      console.log("Session:", session);
+      
+      if (!session) {
+        setError("No session found. Please sign in.");
+        setIsLoading(false);
+        return;
+      }
+
+      // Check if we're on client side and have a token
+      if (typeof window !== 'undefined' && !session.accessToken) {
+        setError("No access token. Please sign in again.");
+        setIsLoading(false);
+        return;
+      }
+
+      if (!session.accessToken) {
+        setError("No access token found. Please sign in.");
         setIsLoading(false);
         return;
       }
@@ -35,7 +52,7 @@ export default function Home() {
       setIsLoading(false);
     } catch (err) {
       console.error("Error loading data:", err);
-      setError("Failed to load GitHub data. Please try signing in again.");
+      setError(`Failed to load GitHub data: ${err instanceof Error ? err.message : 'Unknown error'}. Please try signing in again.`);
       setIsLoading(false);
     }
   };
