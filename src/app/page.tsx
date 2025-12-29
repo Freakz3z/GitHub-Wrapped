@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import WrappedSlideShow from "@/components/WrappedSlideShow";
+import LandingPage from "@/components/LandingPage";
 import { WrappedData } from "@/types";
 import { fetchGitHubData } from "@/lib/github";
 
@@ -56,7 +57,9 @@ export default function Home() {
 
   const handleRefresh = async () => {
     setIsRefreshing(true);
-    await loadData();
+    // @ts-ignore
+    const accessToken = (session as any)?.accessToken;
+    await loadData(accessToken);
     setIsRefreshing(false);
   };
 
@@ -92,6 +95,12 @@ export default function Home() {
     alert("Download feature coming soon! Use browser screenshot to save.");
   };
 
+  // Show landing page if not authenticated
+  if (!session) {
+    return <LandingPage />;
+  }
+
+  // Initial loading state - always show something
   if (isLoading) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
