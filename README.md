@@ -4,7 +4,7 @@
 
 GitHub Wrapped is a personalized year-in-review for developers. It analyzes your GitHub activity over the past year and generates a beautiful, shareable summary of your coding journey with an immersive slide-based experience.
 
-[中文](README_zh.md) | [**🚀 Launch App**](https://githubwrapped-delta.vercel.app)
+[中文](README_zh.md) | [**🚀 Launch App**](https://githubwrapped-roan.vercel.app)
 
 ---
 
