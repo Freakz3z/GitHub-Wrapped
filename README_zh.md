@@ -1,5 +1,7 @@
 # GitHub Wrapped 🎁
 
+![GitHub Wrapped](image.png)
+
 **你的年度代码之旅，可视化呈现。**
 
 GitHub Wrapped 是一款专为开发者打造的年度总结工具。它分析你过去一年的 GitHub 活动，通过沉浸式的滑动体验，生成一份精美、可分享的编程旅程总结。

@@ -1,5 +1,7 @@
 # GitHub Wrapped 🎁
 
+![GitHub Wrapped](image.png)
+
 **Your Year in Code, Beautifully Visualized.**
 
 GitHub Wrapped is a personalized year-in-review for developers. It analyzes your GitHub activity over the past year and generates a stunning, shareable summary of your coding journey with an immersive slide-based experience.
