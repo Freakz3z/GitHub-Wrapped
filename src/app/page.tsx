@@ -8,7 +8,7 @@ import { WrappedData } from "@/types";
 import { fetchGitHubData } from "@/lib/github";
 
 export default function Home() {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const [data, setData] = useState<WrappedData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
@@ -18,21 +18,21 @@ export default function Home() {
     try {
       setError(null);
       setIsLoading(true);
+      console.log("Starting data load...");
 
       const token = accessToken || (session as any)?.accessToken;
       
-      console.log("Loading data with token:", token ? "Token found" : "No token");
-      console.log("Session:", session);
-
       if (!token) {
-        setError("No access token. Please sign in with GitHub.");
+        setError("No access token found. Please sign in with GitHub.");
         setIsLoading(false);
         return;
       }
 
+      console.log("Fetching GitHub data with token...");
       const githubData = await fetchGitHubData(token);
       setData(githubData);
       setIsLoading(false);
+      console.log("Data loaded successfully!");
     } catch (err) {
       console.error("Error loading data:", err);
       setError(`Failed to load GitHub data: ${err instanceof Error ? err.message : 'Unknown error'}. Please try signing in again.`);
@@ -41,26 +41,41 @@ export default function Home() {
   };
 
   useEffect(() => {
-    if (session) {
-      // @ts-ignore
-      const accessToken = (session as any).accessToken;
-      if (accessToken) {
-        loadData(accessToken);
-      } else {
-        setError("No access token in session. Please sign in again.");
-        setIsLoading(false);
-      }
+    console.log("Home: Session status =", status, "Session =", session);
+    
+    // Only process session when it's loaded
+    if (status === "loading") {
+      // Session is still loading, just wait
+      return;
+    }
+    
+    if (!session) {
+      // No session, show landing page
+      setIsLoading(false);
+      return;
+    }
+    
+    // Session exists
+    const token = (session as any)?.accessToken;
+    if (token) {
+      loadData(token);
     } else {
+      setError("No access token in session. Please sign in again.");
       setIsLoading(false);
     }
-  }, [session]);
+  }, [status]);
 
   const handleRefresh = async () => {
-    setIsRefreshing(true);
-    // @ts-ignore
-    const accessToken = (session as any)?.accessToken;
-    await loadData(accessToken);
-    setIsRefreshing(false);
+    if (session) {
+      setIsRefreshing(true);
+      const token = (session as any)?.accessToken;
+      if (token) {
+        await loadData(token);
+      } else {
+        setError("No access token. Please sign in again.");
+        setIsRefreshing(false);
+      }
+    }
   };
 
   const handleShare = (platform: string) => {
@@ -99,8 +114,20 @@ export default function Home() {
   if (!session) {
     return <LandingPage />;
   }
+  
+  // Session exists, now check status
+  if (session) {
+    // @ts-ignore
+    const token = (session as any)?.accessToken;
+    if (token) {
+      loadData(token);
+    } else {
+      setError("No access token. Please sign in with GitHub.");
+      setIsLoading(false);
+    }
+  }
 
-  // Initial loading state - always show something
+  // Show loading if loading data
   if (isLoading) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
@@ -112,6 +139,7 @@ export default function Home() {
     );
   }
 
+  // Show error page
   if (error) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-8">
@@ -129,6 +157,7 @@ export default function Home() {
     );
   }
 
+  // Show wrapped slide show when data is loaded
   if (data) {
     return (
       <WrappedSlideShow
