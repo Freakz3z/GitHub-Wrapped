@@ -56,7 +56,7 @@
 
   <!-- ESA Badge -->
   <a href="https://www.aliyun.com/product/esa">
-    <img src="ESA.png" alt="Aliyun ESA" width="200">
+    <img src="ESA.png" alt="Aliyun ESA">
   </a>
 
   <p>
