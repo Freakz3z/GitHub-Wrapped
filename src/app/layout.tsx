@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import Providers from "@/components/Providers";
 
@@ -16,6 +17,7 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body className={`font-sans bg-[#0d1117] text-white min-h-screen`}>
         <Providers>{children}</Providers>
+        <Analytics />
       </body>
     </html>
   );
