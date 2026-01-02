@@ -93,7 +93,7 @@ export default function Home() {
                 `🔥 ${data.stats.longestStreak || 0} day longest streak\n\n` +
                 `#GitHubWrapped`;
     
-    const url = "https://githubwrapped-delta.vercel.app";
+    const url = window.location.origin;
     
     let shareUrl = "";
     
@@ -164,7 +164,7 @@ export default function Home() {
         onRefresh={handleRefresh}
         isRefreshing={isRefreshing}
         onShare={handleShare}
-        onDownload={handleDownload}
+        onDownload={() => {}} // No longer used, handled internally
         selectedYear={selectedYear}
         onYearChange={setSelectedYear}
       />

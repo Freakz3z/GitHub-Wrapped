@@ -85,6 +85,7 @@
 ### Immersive Experience
 
 - **Smooth Transitions** - Smooth slide transitions using Framer Motion
+- **One-click Export** - Generate high-definition (2x) shareable summary cards
 - **Wheel Navigation** - Seamless navigation with mouse wheel
 - **Progress Indicator** - Elegant progress bar showing current position
 - **Responsive Design** - Perfectly adapted for desktop, tablet, and mobile devices

@@ -1,10 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { WrappedData } from "@/types";
 import { motion, AnimatePresence } from "framer-motion";
-import { RotateCcw, Share2, Download } from "lucide-react";
+import { RotateCcw, Share2, Download, Loader2 } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import ShareCard from "./ShareCard";
+import html2canvas from "html2canvas";
 import {
   IntroSlide,
   StatsSlide,
@@ -38,7 +40,9 @@ export default function WrappedSlideShow({
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState(0);
   const [showProgress, setShowProgress] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
   const { t } = useLanguage();
+  const shareCardRef = useRef<HTMLDivElement>(null);
 
   const currentYear = new Date().getFullYear();
   const years = Array.from({ length: 5 }, (_, i) => currentYear - i);
@@ -129,6 +133,34 @@ export default function WrappedSlideShow({
     };
   }, []);
 
+  const handleDownloadImage = async () => {
+    if (!shareCardRef.current) return;
+    setIsGenerating(true);
+    try {
+      // Wait for images to load
+      await new Promise(resolve => setTimeout(resolve, 500));
+      
+      const canvas = await html2canvas(shareCardRef.current, {
+        scale: 2, // Higher quality
+        backgroundColor: "#0d1117",
+        useCORS: true,
+        allowTaint: true,
+        width: 1080,
+        height: 1350,
+      });
+      
+      const link = document.createElement("a");
+      link.download = `github-wrapped-${data.year}-${data.user.login}.png`;
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+    } catch (err) {
+      console.error("Failed to generate image", err);
+      alert("Failed to generate image. Please try again.");
+    } finally {
+      setIsGenerating(false);
+    }
+  };
+
   const slideVariants = {
     enter: (direction: number) => ({
       y: direction > 0 ? 1000 : -1000,
@@ -201,14 +233,26 @@ export default function WrappedSlideShow({
               <span className="hidden sm:inline">LinkedIn</span>
             </button>
             <button
-              onClick={onDownload}
-              className="flex items-center gap-2 px-3 py-2 md:px-4 md:py-2 bg-green-600 text-white text-sm md:text-base rounded-lg hover:bg-green-500 transition-all"
+              onClick={handleDownloadImage}
+              disabled={isGenerating}
+              className="flex items-center gap-2 px-3 py-2 md:px-4 md:py-2 bg-green-600 text-white text-sm md:text-base rounded-lg hover:bg-green-500 transition-all disabled:opacity-50"
             >
-              <Download className="w-4 h-4" />
-              <span className="hidden sm:inline">Download</span>
+              {isGenerating ? (
+                <Loader2 className="w-4 h-4 animate-spin" />
+              ) : (
+                <Download className="w-4 h-4" />
+              )}
+              <span className="hidden sm:inline">
+                {isGenerating ? t.dashboard.generating : t.dashboard.download}
+              </span>
             </button>
           </div>
         </div>
+      </div>
+
+      {/* Hidden Share Card for Image Generation */}
+      <div className="fixed left-[-9999px] top-[-9999px]">
+        <ShareCard ref={shareCardRef} data={data} />
       </div>
 
       {/* Main Content */}
