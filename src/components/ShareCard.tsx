@@ -96,7 +96,6 @@ const ShareCard = forwardRef<HTMLDivElement, Props>(({ data }, ref) => {
                more: t.dashboard.charts.more,
                totalCount: t.dashboard.charts.totalCount,
              }}
-             blockSize={18}
              blockSize={16}
              blockMargin={5}
              fontSize={20}
