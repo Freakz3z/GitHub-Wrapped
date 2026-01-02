@@ -4,10 +4,8 @@
   "build": {
     "command": "npm run build"
   },
-  "assets": {
-    "path": "public"
-  },
-  "function": {
-    "path": ".next/standalone/server.js"
+  "publish": {
+    "assets": "public",
+    "function": ".next/standalone/server.js"
   }
 }
