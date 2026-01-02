@@ -149,12 +149,32 @@ export default function WrappedSlideShow({
         height: 1350,
         onclone: (clonedDoc) => {
           // Fix for "lab" color function issue in html2canvas
-          // Find all elements with lab() colors and replace them with fallback colors
-          const elements = clonedDoc.getElementsByTagName('*');
-          for (let i = 0; i < elements.length; i++) {
-            const style = window.getComputedStyle(elements[i]);
-            // Check background, color, border-color etc.
-            // This is a common issue with some CSS frameworks or browser-injected styles
+          // This error often occurs when browser extensions (like Dark Reader) 
+          // or modern CSS inject lab() color functions which html2canvas doesn't support.
+          const styleElements = clonedDoc.getElementsByTagName('style');
+          for (let i = 0; i < styleElements.length; i++) {
+            const style = styleElements[i];
+            if (style.innerHTML.includes('lab(')) {
+              style.innerHTML = style.innerHTML.replace(/lab\([^)]+\)/g, 'transparent');
+            }
+          }
+          const allElements = clonedDoc.getElementsByTagName('*');
+          for (let i = 0; i < allElements.length; i++) {
+            const el = allElements[i] as HTMLElement;
+            if (el.style) {
+              ['color', 'backgroundColor', 'borderColor', 'fill', 'stroke'].forEach(prop => {
+                try {
+                  // @ts-ignore
+                  const val = el.style[prop];
+                  if (typeof val === 'string' && val.includes('lab(')) {
+                    // @ts-ignore
+                    el.style[prop] = 'transparent';
+                  }
+                } catch (e) {
+                  // Ignore style access errors
+                }
+              });
+            }
           }
         }
       });
