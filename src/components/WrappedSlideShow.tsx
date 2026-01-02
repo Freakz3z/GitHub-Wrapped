@@ -147,8 +147,29 @@ export default function WrappedSlideShow({
         allowTaint: true,
         width: 1080,
         height: 1350,
-        logging: true, // Enable logging to help debug
+        windowWidth: 1080,
+        windowHeight: 1350,
+        scrollX: 0,
+        scrollY: 0,
+        logging: true,
         onclone: (clonedDoc) => {
+          // Move the share card to the top-left of the cloned document to ensure it's captured correctly
+          const shareCard = clonedDoc.getElementById('share-card-container');
+          if (shareCard) {
+            shareCard.style.position = 'fixed';
+            shareCard.style.top = '0';
+            shareCard.style.left = '0';
+            shareCard.style.margin = '0';
+          }
+
+          // Ensure scrollable elements (like heatmap) are fully expanded
+          const scrollables = clonedDoc.querySelectorAll('[data-scrollable="true"]');
+          scrollables.forEach(el => {
+            (el as HTMLElement).style.overflow = 'visible';
+            (el as HTMLElement).style.width = 'auto';
+            (el as HTMLElement).style.minWidth = 'max-content';
+          });
+
           // EXTREME FIX for "lab" color function issue:
           // Remove ALL style and link tags to prevent html2canvas from parsing problematic CSS.
           // We have inlined essential styles in ShareCard.tsx.
@@ -283,7 +304,7 @@ export default function WrappedSlideShow({
       </div>
 
       {/* Hidden Share Card for Image Generation */}
-      <div className="fixed left-[-9999px] top-[-9999px]">
+      <div className="fixed left-[-9999px] top-[-9999px]" style={{ width: '1080px', height: '1350px', overflow: 'hidden' }}>
         <ShareCard ref={shareCardRef} data={data} />
       </div>
 

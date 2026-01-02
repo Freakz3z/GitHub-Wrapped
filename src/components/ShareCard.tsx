@@ -17,54 +17,66 @@ const ShareCard = forwardRef<HTMLDivElement, Props>(({ data }, ref) => {
     <div
       ref={ref}
       id="share-card-container"
-      className="w-[1080px] h-[1350px] flex flex-col relative overflow-hidden"
+      className="flex flex-col relative overflow-hidden"
       style={{ 
+        width: '1080px',
+        height: '1350px',
+        minWidth: '1080px',
+        minHeight: '1350px',
         fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
         backgroundColor: "#0d1117",
         color: "#ffffff",
         padding: "64px",
-        border: "1px solid #30363d"
+        border: "1px solid #30363d",
+        boxSizing: 'border-box',
+        display: 'flex',
+        flexDirection: 'column'
       }}
     >
       {/* Background Elements - Using Radial Gradients instead of filters for better html2canvas support */}
       <div 
-        className="absolute top-0 right-0 w-[1000px] h-[1000px]" 
         style={{ 
           background: "radial-gradient(circle at 70% 30%, rgba(34, 197, 94, 0.15) 0%, rgba(34, 197, 94, 0) 70%)",
           position: 'absolute',
           top: '-200px',
           right: '-200px',
+          width: '1000px',
+          height: '1000px',
           zIndex: 0
         }} 
       />
       <div 
-        className="absolute bottom-0 left-0 w-[800px] h-[800px]" 
         style={{ 
           background: "radial-gradient(circle at 30% 70%, rgba(59, 130, 246, 0.15) 0%, rgba(59, 130, 246, 0) 70%)",
           position: 'absolute',
           bottom: '-200px',
           left: '-200px',
+          width: '800px',
+          height: '800px',
           zIndex: 0
         }} 
       />
       <div 
-        className="absolute top-1/2 left-1/2 w-[1200px] h-[1200px]" 
         style={{ 
           background: "radial-gradient(circle at center, rgba(192, 132, 252, 0.05) 0%, rgba(192, 132, 252, 0) 60%)",
           position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
+          top: '75px', // 1350/2 - 1200/2 = 75
+          left: '-60px', // 1080/2 - 1200/2 = -60
+          width: '1200px',
+          height: '1200px',
           zIndex: 0
         }} 
       />
 
       {/* Header */}
-      <div className="flex items-center gap-8 mb-12 z-10" style={{ display: 'flex', alignItems: 'center', marginBottom: '48px', position: 'relative', zIndex: 10 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '32px', marginBottom: '48px', position: 'relative', zIndex: 10 }}>
         <div style={{ position: 'relative' }}>
           <div style={{ 
             position: 'absolute', 
-            inset: '-4px', 
+            top: '-4px',
+            left: '-4px',
+            right: '-4px',
+            bottom: '-4px',
             background: 'linear-gradient(45deg, #4ade80, #60a5fa, #c084fc)', 
             borderRadius: '9999px',
             zIndex: -1
