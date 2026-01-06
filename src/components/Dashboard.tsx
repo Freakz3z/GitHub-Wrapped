@@ -44,35 +44,57 @@ export default function Dashboard({ data }: Props) {
     setIsGenerating(true);
     try {
       // Wait a bit for any rendering to finish
-      await new Promise(resolve => setTimeout(resolve, 200));
+      await new Promise(resolve => setTimeout(resolve, 300));
 
-      const canvas = await html2canvas(shareCardRef.current, {
-        scale: 2, // Higher scale for better quality
+      // Get actual dimensions
+      const element = shareCardRef.current;
+      const rect = element.getBoundingClientRect();
+
+      const canvas = await html2canvas(element, {
+        scale: 2,
         backgroundColor: "#0d1117",
         useCORS: true,
         allowTaint: true,
         logging: false,
+        width: 1080,
+        height: 1350,
+        windowWidth: 1080,
+        windowHeight: 1350,
+        scrollX: 0,
+        scrollY: 0,
         onclone: (clonedDoc) => {
-          // Force all elements to be visible and properly positioned
-          const element = clonedDoc.getElementById('share-card-container');
-          if (element) {
-            element.style.display = 'flex';
-            element.style.position = 'relative';
-            element.style.left = '0';
-            element.style.top = '0';
-            element.style.visibility = 'visible';
-            element.style.opacity = '1';
-          }
-          // Ensure all children are visible
-          const allElements = clonedDoc.querySelectorAll('*');
-          allElements.forEach(el => {
-            if (el instanceof HTMLElement) {
-              const computedStyle = window.getComputedStyle(el);
-              if (computedStyle.position === 'absolute' || computedStyle.position === 'fixed') {
-                el.style.position = 'absolute';
+          const container = clonedDoc.getElementById('share-card-container');
+          if (container) {
+            // Force exact dimensions
+            container.style.width = '1080px';
+            container.style.height = '1350px';
+            container.style.minWidth = '1080px';
+            container.style.minHeight = '1350px';
+            container.style.maxWidth = '1080px';
+            container.style.maxHeight = '1350px';
+            container.style.display = 'flex';
+            container.style.flexDirection = 'column';
+            container.style.position = 'relative';
+            container.style.overflow = 'visible';
+            container.style.visibility = 'visible';
+            container.style.opacity = '1';
+
+            // Ensure all children are visible
+            const children = container.querySelectorAll('*');
+            children.forEach((child) => {
+              if (child instanceof HTMLElement) {
+                child.style.overflow = 'visible';
               }
-            }
-          });
+            });
+          }
+
+          // Remove any overflow hidden on cloned document
+          const body = clonedDoc.body;
+          if (body) {
+            body.style.overflow = 'visible';
+            body.style.width = '1080px';
+            body.style.height = '1350px';
+          }
         }
       });
 

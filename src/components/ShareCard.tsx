@@ -17,7 +17,7 @@ const ShareCard = forwardRef<HTMLDivElement, Props>(({ data }, ref) => {
     <div
       ref={ref}
       id="share-card-container"
-      className="flex flex-col relative overflow-hidden"
+      className="flex flex-col relative"
       style={{ 
         width: '1080px',
         height: '1350px',
