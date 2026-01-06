@@ -3,10 +3,10 @@
   "type": "nextjs",
   "build": {
     "command": "npm run build",
-    "outDir": ".next"
+    "outDir": ".next/standalone"
   },
   "publish": {
-    "assets": ".next/standalone/public,.next/standalone/.next/static",
-    "function": ".next/standalone/server.js"
+    "assets": "public,.next/static",
+    "function": "server.js"
   }
 }
