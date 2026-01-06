@@ -44,33 +44,41 @@ export default function Dashboard({ data }: Props) {
     setIsGenerating(true);
     try {
       // Wait a bit for any rendering to finish
-      await new Promise(resolve => setTimeout(resolve, 100));
-      
+      await new Promise(resolve => setTimeout(resolve, 200));
+
       const canvas = await html2canvas(shareCardRef.current, {
-        scale: 1, // The card is already large (1080x1350)
+        scale: 2, // Higher scale for better quality
         backgroundColor: "#0d1117",
-        useCORS: true, // Important for avatar images
+        useCORS: true,
         allowTaint: true,
-        logging: true,
-        width: 1080,
-        height: 1350,
-        windowWidth: 1920,
-        windowHeight: 1080,
+        logging: false,
         onclone: (clonedDoc) => {
-            // Ensure the cloned element is visible
-            const element = clonedDoc.getElementById('share-card-container');
-            if (element) {
-                element.style.display = 'block';
-                element.style.position = 'relative';
-                element.style.left = '0';
-                element.style.top = '0';
+          // Force all elements to be visible and properly positioned
+          const element = clonedDoc.getElementById('share-card-container');
+          if (element) {
+            element.style.display = 'flex';
+            element.style.position = 'relative';
+            element.style.left = '0';
+            element.style.top = '0';
+            element.style.visibility = 'visible';
+            element.style.opacity = '1';
+          }
+          // Ensure all children are visible
+          const allElements = clonedDoc.querySelectorAll('*');
+          allElements.forEach(el => {
+            if (el instanceof HTMLElement) {
+              const computedStyle = window.getComputedStyle(el);
+              if (computedStyle.position === 'absolute' || computedStyle.position === 'fixed') {
+                el.style.position = 'absolute';
+              }
             }
+          });
         }
       });
-      
+
       const link = document.createElement("a");
       link.download = `github-wrapped-${data.year}-${data.user.login}.png`;
-      link.href = canvas.toDataURL("image/png");
+      link.href = canvas.toDataURL("image/png", 1.0);
       link.click();
     } catch (err) {
       console.error("Failed to generate image", err);
@@ -207,7 +215,7 @@ export default function Dashboard({ data }: Props) {
       </div>
 
       {/* Hidden Share Card for Generation */}
-      <div style={{ position: 'fixed', top: 0, left: 0, zIndex: -1, opacity: 0, pointerEvents: 'none' }}>
+      <div style={{ position: 'absolute', left: '-9999px', top: 0, visibility: 'visible' }}>
         <div id="share-card-container">
             <ShareCard ref={shareCardRef} data={{...data, user: {...data.user, avatarUrl: avatarBase64}}} />
         </div>
