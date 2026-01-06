@@ -6,7 +6,7 @@
     "outDir": ".next"
   },
   "publish": {
-    "assets": ".next/standalone",
+    "assets": ".next/standalone/public,.next/standalone/.next/static",
     "function": ".next/standalone/server.js"
   }
 }
