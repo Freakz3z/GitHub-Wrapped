@@ -1,0 +1,13 @@
+{
+  "$schema": "https://raw.githubusercontent.com/aliyun/alibabacloud-esa-er-templates/master/schema.jsonc",
+  "name": "github-wrapped",
+  "version": "0.1.9",
+  "buildCommand": "npm run build",
+  "installCommand": "npm install",
+  "runtime": "nodejs20",
+  "outputMode": "static",
+  "assets": {
+    "directory": "./out",
+    "notFoundStrategy": "singlePageApplication"
+  }
+}
