@@ -137,17 +137,17 @@ export default function WrappedSlideShow({
     if (!shareCardRef.current) return;
     setIsGenerating(true);
     try {
-      // Wait for images to load
-      await new Promise(resolve => setTimeout(resolve, 500));
+      // Wait for images to load and render
+      await new Promise(resolve => setTimeout(resolve, 1000));
 
-      // Get actual dimensions of the share card
+      // Get actual dimensions
       const actualWidth = shareCardRef.current.offsetWidth;
       const actualHeight = shareCardRef.current.offsetHeight;
 
       console.log('ShareCard dimensions:', { width: actualWidth, height: actualHeight });
 
       const canvas = await html2canvas(shareCardRef.current, {
-        scale: 2, // Higher quality
+        scale: 2,
         backgroundColor: "#0d1117",
         useCORS: true,
         allowTaint: true,
@@ -157,58 +157,26 @@ export default function WrappedSlideShow({
         windowHeight: actualHeight,
         scrollX: 0,
         scrollY: 0,
-        logging: true,
+        logging: false,
         onclone: (clonedDoc) => {
-          // Move the share card to the top-left of the cloned document to ensure it's captured correctly
+          // Fix the share card positioning
           const shareCard = clonedDoc.getElementById('share-card-container');
           if (shareCard) {
             const card = shareCard as HTMLElement;
-            card.style.position = 'fixed';
+            card.style.position = 'absolute';
             card.style.top = '0';
             card.style.left = '0';
             card.style.margin = '0';
-            // Ensure the cloned element has the same dimensions
-            card.style.width = `${actualWidth}px`;
-            card.style.height = `${actualHeight}px`;
           }
 
-          // Ensure scrollable elements (like heatmap) are fully expanded
+          // Expand scrollable heatmap
           const scrollables = clonedDoc.querySelectorAll('[data-scrollable="true"]');
           scrollables.forEach(el => {
-            (el as HTMLElement).style.overflow = 'visible';
-            (el as HTMLElement).style.width = 'auto';
-            (el as HTMLElement).style.minWidth = 'max-content';
+            const htmlEl = el as HTMLElement;
+            htmlEl.style.overflow = 'visible';
+            htmlEl.style.height = 'auto';
+            htmlEl.style.width = 'auto';
           });
-
-          // EXTREME FIX for "lab" color function issue:
-          // Remove ALL style and link tags to prevent html2canvas from parsing problematic CSS.
-          // We have inlined essential styles in ShareCard.tsx.
-          const styles = clonedDoc.getElementsByTagName('style');
-          const links = clonedDoc.getElementsByTagName('link');
-
-          // Convert to array to avoid live collection issues while removing
-          Array.from(styles).forEach(s => s.remove());
-          Array.from(links).forEach(l => {
-            if (l.rel === 'stylesheet') l.remove();
-          });
-
-          // Also sanitize any remaining inline styles just in case
-          const allElements = clonedDoc.getElementsByTagName('*');
-          for (let i = 0; i < allElements.length; i++) {
-            const el = allElements[i] as HTMLElement;
-            if (el.style) {
-              ['color', 'backgroundColor', 'borderColor', 'fill', 'stroke', 'background'].forEach(prop => {
-                try {
-                  // @ts-ignore
-                  const val = el.style[prop];
-                  if (typeof val === 'string' && (val.includes('lab(') || val.includes('oklch(') || val.includes('oklab('))) {
-                    // @ts-ignore
-                    el.style[prop] = 'transparent';
-                  }
-                } catch (e) {}
-              });
-            }
-          }
         }
       });
 
@@ -216,9 +184,11 @@ export default function WrappedSlideShow({
       link.download = `github-wrapped-${data.year}-${data.user.login}.png`;
       link.href = canvas.toDataURL("image/png");
       link.click();
+
+      console.log('Image downloaded successfully');
     } catch (err) {
-      console.error("Failed to generate image", err);
-      alert("Failed to generate image. Please try again.");
+      console.error("Failed to generate image:", err);
+      alert(`Failed to generate image. Please try taking a screenshot instead.`);
     } finally {
       setIsGenerating(false);
     }
@@ -314,7 +284,7 @@ export default function WrappedSlideShow({
       </div>
 
       {/* Hidden Share Card for Image Generation */}
-      <div className="fixed left-[-9999px] top-[-9999px]" style={{ width: '1080px', overflow: 'visible', visibility: 'hidden' }}>
+      <div style={{ position: 'fixed', left: '0', top: '0', zIndex: -1, opacity: 0.01, pointerEvents: 'none' }}>
         <ShareCard ref={shareCardRef} data={data} />
       </div>
 
