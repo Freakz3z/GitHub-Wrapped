@@ -1,8 +1,9 @@
 <div align="center">
 
-  <!-- Title & Logo -->
+  <!-- Title & Demo Video -->
   <h1 align="center">
-    <img src="image.png" alt="GitHub Wrapped">
+    <!-- Project Icon -->
+    <img src="public/icon.svg" alt="GitHub Wrapped Icon" width="120">
     <br>
     GitHub Wrapped
   </h1>
@@ -33,6 +34,7 @@
 
   <!-- Description -->
   <p align="center">
+    <img src="GitHub-Wrapped.gif" alt="GitHub Wrapped Demo" width="800">
     GitHub Wrapped is a year-in-review tool for developers that visualizes your GitHub activity data through beautiful slides.
     <br>
     Analyze your code contributions from the past year and generate a shareable, beautiful summary.
@@ -44,23 +46,6 @@
     <a href="https://githubwrapped-roan.vercel.app">🚀 Live Demo</a> •
     <a href="#-tech-stack">Tech Stack</a> •
     <a href="#-development">Development</a>
-  </p>
-
-</div>
-
----
-
-## Infrastructure Partner
-
-<div align="center">
-
-  <!-- ESA Badge -->
-  <a href="https://www.aliyun.com/product/esa">
-    <img src="ESA.png" alt="Aliyun ESA">
-  </a>
-
-  <p>
-    <strong>Powered by <a href="https://www.aliyun.com/product/esa">Aliyun Edge Secure Acceleration (ESA)</a></strong>
   </p>
 
 </div>
@@ -80,75 +65,66 @@
 
 ---
 
-## Features
+## ✨ Features
 
-### Immersive Experience
+### 🎨 Immersive Experience
+- **Interactive Slides**: Browse your yearly data with smooth animations and transitions
+- **One-click Export**: Generate high-definition (2x) shareable summary cards for social platforms
+- **Keyboard Support**: Navigate between slides using left and right arrow keys
+- **Progress Indicator**: Track your progress through the slides
+- **Responsive Design**: Perfectly adapted for desktop, tablet, and mobile devices
+- **Modern UI**: Glassmorphism design style with gradient backgrounds and custom scrollbars
 
-- **Smooth Transitions** - Smooth slide transitions using Framer Motion
-- **One-click Export** - Generate high-definition (2x) shareable summary cards
-- **Wheel Navigation** - Seamless navigation with mouse wheel
-- **Progress Indicator** - Elegant progress bar showing current position
-- **Responsive Design** - Perfectly adapted for desktop, tablet, and mobile devices
-- **Modern UI** - Glassmorphism design style with gradient backgrounds and custom scrollbars
+### 📊 Comprehensive Analytics
+- **Multi-year Support**: View summaries for the past 5 years with smart default year selection
+- **Total Contributions**: Combined statistics of commits, pull requests, issues, and code reviews
+- **Stars Earned**: Total stars across all your repositories
+- **Pull Requests**: Track your PR contributions
+- **Issues Created**: See your impact through issue reports
+- **Code Reviews**: Number of PRs you've reviewed
+- **Longest Streak**: Your longest consecutive contribution days
+- **Current Streak**: Your current consecutive contribution days
+- **Best Day**: The day with your most contributions
 
-### Analytics
+### 🗓️ Contribution Heatmap
+- Visualize your daily code activity with a beautiful heatmap
+- View streaks and patterns in your contribution history
+- Interactive calendar view with contribution levels
 
-#### Statistics Overview
-- **Multi-year Support** - View summaries for the past 5 years with smart default year selection
-- Total Contributions (Commits, PRs, Issues, Code Reviews)
-- Stars Earned
-- Pull Requests Created
-- Issues Created
-- Code Reviews
-- Longest Streak
-- Current Streak
-- Best Day
+### 🏆 Achievement Badges
+- **Contribution Badges**: Unlock badges based on total contributions (100, 500, 1K, 2.5K)
+- **Streak Badges**: Earn badges for maintaining streaks (7, 30, 100 days)
+- **Star Badges**: Collect badges for stars earned (10, 50, 100, 500)
+- **PR Badges**: Recognition for pull requests (10, 50, 100)
+- **Special Badges**: Polyglot (5+ languages), Code Reviewer (100+ reviews)
+- **Progress Tracking**: See your progress toward locking badges
 
-#### Monthly Journey
-- Monthly activity cards
-- Green pulsing indicator for active months
-- Monthly stats: total contributions, active days, best streak, best day
-- Gray cards for inactive months
-- Yearly streak summary
-
-#### Achievement Badges
-
-| Badge Type | Levels |
-|------------|--------|
-| Contributions | 100 🥉 / 500 🥈 / 1K 🥇 / 2.5K 💎 |
-| Streak | 7 Days 🔥 / 30 Days 🚀 / 100 Days ⭐ |
-| Stars | 10 ⭐ / 50 🌟 / 100 💫 / 500 🏆 |
-| Pull Requests | 10 📝 / 50 📋 / 100 ✅ |
-| Special | Polyglot 🌍 / Code Reviewer 👀 |
-
-#### Programming Languages
+### 🌍 Top Programming Languages
 - Visualized language distribution chart
-- Percentage breakdown with animated progress bars
+- Percentage breakdown by language
 - Color-coded language indicators
-- Language diversity tracking
+- Track your language diversity
 
-#### Top Repositories
-- Repository name and description
-- Primary language with color indicator
-- Stars, Forks, and Issues count
-- Direct link to GitHub
-- Compact and elegant card layout
+### 📦 Top Repositories
+- Your most popular repositories
+- Repository descriptions
+- Primary language for each repo
+- Star counts and branch information
+- Open issue tracking
 
-### Security & Privacy
-
-- **Read-only Access** - Only requests permission to read public data
-- **No Data Storage** - Your data is never stored on our servers
-- **Secure Auth** - Uses GitHub OAuth and NextAuth.js
-- **Session Management** - Secure session handling mechanism
+### 🔒 Privacy First
+- **Read-only Access**: Only requests permission to read public data
+- **No Data Storage**: Your data is never stored on our servers
+- **Secure Authentication**: Uses NextAuth for GitHub OAuth authentication
 
 ---
 
-## Slides Overview
+## 🎯 Slides Overview
 
 | Slide | Description |
 |-------|-------------|
-| **1. Intro** | Personalized welcome page showing GitHub profile and bio |
-| **2. Stats** | 6 animated cards showing key metrics |
+| **1. Intro** | Personalized welcome showing GitHub profile and bio |
+| **2. Stats** | 6 animated cards displaying key metrics |
 | **3. Heatmap** | Monthly activity cards with detailed stats and streak info |
 | **4. Languages** | Interactive language distribution with progress bars and charts |
 | **5. Repos** | Responsive grid layout for top repositories |
@@ -158,7 +134,7 @@
 
 ---
 
-## Tech Stack
+## 🛠️ Tech Stack
 
 ### Frontend
 
@@ -178,7 +154,7 @@
 - **Charts** - [Recharts](https://recharts.org/)
 - **Calendar** - [react-activity-calendar](https://github.com/gr2m/react-activity-calendar)
 
-### Development
+### Development Tools
 
 - **Language** - [TypeScript](https://www.typescriptlang.org/)
 - **Package Manager** - npm / pnpm
@@ -186,7 +162,7 @@
 
 ---
 
-## Getting Started
+## 🚀 Getting Started
 
 ### One-Click Deploy
 
@@ -200,7 +176,7 @@
 
 ---
 
-## Environment Variables
+## ⚙️ Environment Variables
 
 Create a `.env.local` file and configure the following environment variables:
 
@@ -230,7 +206,7 @@ NEXTAUTH_URL=http://localhost:3000
 
 ---
 
-## Development
+## 💻 Development
 
 ### Installation
 
@@ -266,7 +242,7 @@ npm run lint
 
 ---
 
-## Contributing
+## 🤝 Contributing
 
 We welcome all forms of contributions!
 
@@ -292,7 +268,7 @@ We welcome all forms of contributions!
 
 ---
 
-## License
+## 📄 License
 
 This project is licensed under the [Apache License 2.0](LICENSE).
 

@@ -1,8 +1,11 @@
 <div align="center">
 
-  <!-- Title & Logo -->
+  
+
+  <!-- Title & Demo Video -->
   <h1 align="center">
-    <img src="image.png" alt="GitHub Wrapped">
+    <!-- Project Icon -->
+    <img src="public/icon.svg" alt="GitHub Wrapped Icon" width="120">
     <br>
     GitHub Wrapped
   </h1>
@@ -33,6 +36,7 @@
 
   <!-- Description -->
   <p align="center">
+    <img src="GitHub-Wrapped.gif" alt="GitHub Wrapped Demo" width="800">
     GitHub Wrapped 是一个为开发者打造的年度回顾工具，通过精美的幻灯片展示你的 GitHub 活动数据。
     <br>
     分析你过去一年的代码贡献，生成可分享的精美总结。
@@ -44,25 +48,6 @@
     <a href="https://githubwrapped-roan.vercel.app">🚀 在线体验</a> •
     <a href="#-技术栈">技术栈</a> •
     <a href="#-本地开发">本地开发</a>
-  </p>
-
-</div>
-
----
-
-## 基础设施合作伙伴
-
-<div align="center">
-
-  <!-- ESA Badge -->
-  <a href="https://www.aliyun.com/product/esa">
-    <img src="ESA.png" alt="Aliyun ESA">
-  </a>
-
-  <p>
-    <strong>本项目由阿里云 ESA 提供加速、计算和保护</strong>
-    <br>
-    <em>Powered by <a href="https://www.aliyun.com/product/esa">Aliyun Edge Secure Acceleration (ESA)</a></em>
   </p>
 
 </div>

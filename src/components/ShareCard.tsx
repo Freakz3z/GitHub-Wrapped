@@ -20,8 +20,7 @@ const ShareCard = forwardRef<HTMLDivElement, Props>(({ data }, ref) => {
       className="flex flex-col relative"
       style={{
         width: '1080px',
-        minHeight: '1350px',
-        maxHeight: 'fit-content',
+        height: 'fit-content',
         fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
         backgroundColor: "#0d1117",
         color: "#ffffff",
@@ -29,7 +28,8 @@ const ShareCard = forwardRef<HTMLDivElement, Props>(({ data }, ref) => {
         border: "1px solid #30363d",
         boxSizing: 'border-box',
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        overflow: 'visible'
       }}
     >
       {/* Background Elements - Using Radial Gradients instead of filters for better html2canvas support */}
@@ -223,7 +223,7 @@ const ShareCard = forwardRef<HTMLDivElement, Props>(({ data }, ref) => {
       </div>
 
       {/* Footer */}
-      <div style={{ marginTop: 'auto', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', position: 'relative', zIndex: 10 }}>
+      <div style={{ marginTop: '48px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', position: 'relative', zIndex: 10 }}>
         <div style={{ display: 'flex', gap: '20px' }}>
           {data.topLanguages.slice(0, 3).map((lang) => (
             <div 

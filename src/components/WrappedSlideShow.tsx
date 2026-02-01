@@ -139,16 +139,22 @@ export default function WrappedSlideShow({
     try {
       // Wait for images to load
       await new Promise(resolve => setTimeout(resolve, 500));
-      
+
+      // Get actual dimensions of the share card
+      const actualWidth = shareCardRef.current.offsetWidth;
+      const actualHeight = shareCardRef.current.offsetHeight;
+
+      console.log('ShareCard dimensions:', { width: actualWidth, height: actualHeight });
+
       const canvas = await html2canvas(shareCardRef.current, {
         scale: 2, // Higher quality
         backgroundColor: "#0d1117",
         useCORS: true,
         allowTaint: true,
-        width: 1080,
-        height: 1350,
-        windowWidth: 1080,
-        windowHeight: 1350,
+        width: actualWidth,
+        height: actualHeight,
+        windowWidth: actualWidth,
+        windowHeight: actualHeight,
         scrollX: 0,
         scrollY: 0,
         logging: true,
@@ -156,10 +162,14 @@ export default function WrappedSlideShow({
           // Move the share card to the top-left of the cloned document to ensure it's captured correctly
           const shareCard = clonedDoc.getElementById('share-card-container');
           if (shareCard) {
-            shareCard.style.position = 'fixed';
-            shareCard.style.top = '0';
-            shareCard.style.left = '0';
-            shareCard.style.margin = '0';
+            const card = shareCard as HTMLElement;
+            card.style.position = 'fixed';
+            card.style.top = '0';
+            card.style.left = '0';
+            card.style.margin = '0';
+            // Ensure the cloned element has the same dimensions
+            card.style.width = `${actualWidth}px`;
+            card.style.height = `${actualHeight}px`;
           }
 
           // Ensure scrollable elements (like heatmap) are fully expanded
@@ -175,7 +185,7 @@ export default function WrappedSlideShow({
           // We have inlined essential styles in ShareCard.tsx.
           const styles = clonedDoc.getElementsByTagName('style');
           const links = clonedDoc.getElementsByTagName('link');
-          
+
           // Convert to array to avoid live collection issues while removing
           Array.from(styles).forEach(s => s.remove());
           Array.from(links).forEach(l => {
@@ -201,7 +211,7 @@ export default function WrappedSlideShow({
           }
         }
       });
-      
+
       const link = document.createElement("a");
       link.download = `github-wrapped-${data.year}-${data.user.login}.png`;
       link.href = canvas.toDataURL("image/png");
@@ -304,7 +314,7 @@ export default function WrappedSlideShow({
       </div>
 
       {/* Hidden Share Card for Image Generation */}
-      <div className="fixed left-[-9999px] top-[-9999px]" style={{ width: '1080px', height: '1350px', overflow: 'hidden' }}>
+      <div className="fixed left-[-9999px] top-[-9999px]" style={{ width: '1080px', overflow: 'visible', visibility: 'hidden' }}>
         <ShareCard ref={shareCardRef} data={data} />
       </div>
 
