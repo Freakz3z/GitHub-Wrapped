@@ -3,7 +3,7 @@
 import { forwardRef } from "react";
 import { WrappedData } from "@/types";
 import ContributionHeatmap from "./ContributionHeatmap";
-import { Github, Star, GitCommit, GitPullRequest, Trophy } from "lucide-react";
+import { Star, GitCommit, GitPullRequest, Trophy } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 interface Props {
@@ -102,19 +102,23 @@ const ShareCard = forwardRef<HTMLDivElement, Props>(({ data }, ref) => {
           <p style={{ fontSize: '32px', color: '#8b949e', fontWeight: 500 }}>@{data.user.login}</p>
         </div>
         <div style={{ marginLeft: 'auto' }}>
-          <div 
-            style={{ 
-              display: 'flex', 
-              alignItems: 'center', 
-              gap: '16px', 
-              backgroundColor: "rgba(22, 27, 34, 0.8)", 
-              padding: "16px 32px", 
-              borderRadius: "9999px", 
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '16px',
+              backgroundColor: "rgba(22, 27, 34, 0.8)",
+              padding: "16px 32px",
+              borderRadius: "9999px",
               border: "1px solid #30363d",
               boxShadow: "0 4px 20px rgba(0,0,0,0.3)"
             }}
           >
-            <Github size={40} />
+            <img
+              src="/share-icon.svg"
+              alt="GitHub"
+              style={{ width: '40px', height: '40px' }}
+            />
             <span style={{ fontSize: '32px', fontWeight: 800, color: '#f0f6fc' }}>{data.year}</span>
           </div>
         </div>
@@ -190,34 +194,34 @@ const ShareCard = forwardRef<HTMLDivElement, Props>(({ data }, ref) => {
       </div>
 
       {/* Heatmap Section */}
-      <div 
-        style={{ 
-          backgroundColor: "rgba(22, 27, 34, 0.6)", 
-          border: "1px solid #30363d", 
-          borderRadius: "32px", 
-          padding: "48px", 
-          marginBottom: "48px", 
-          flex: 1, 
-          display: 'flex', 
-          flexDirection: 'column', 
-          justifyContent: 'center',
+      <div
+        style={{
+          backgroundColor: "rgba(22, 27, 34, 0.6)",
+          border: "1px solid #30363d",
+          borderRadius: "32px",
+          padding: "48px",
+          marginBottom: "48px",
+          display: 'flex',
+          flexDirection: 'column',
           position: 'relative',
           zIndex: 10,
-          boxShadow: "0 8px 32px rgba(0,0,0,0.2)"
+          boxShadow: "0 8px 32px rgba(0,0,0,0.2)",
+          maxHeight: '600px',
+          overflow: 'hidden'
         }}
       >
         <h3 style={{ fontSize: '32px', fontWeight: 700, marginBottom: '40px', color: '#8b949e', textTransform: 'uppercase', letterSpacing: '0.1em' }}>{t.shareCard.graph}</h3>
-        <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-           <ContributionHeatmap 
-             data={data.stats.contributionCalendar} 
+        <div style={{ width: '100%', display: 'flex', justifyContent: 'center', overflow: 'hidden' }}>
+           <ContributionHeatmap
+             data={data.stats.contributionCalendar}
              labels={{
                less: t.dashboard.charts.less,
                more: t.dashboard.charts.more,
                totalCount: t.dashboard.charts.totalCount,
              }}
-             blockSize={18}
-             blockMargin={5}
-             fontSize={18}
+             blockSize={15}
+             blockMargin={4}
+             fontSize={16}
            />
         </div>
       </div>

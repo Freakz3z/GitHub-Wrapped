@@ -58,7 +58,7 @@ export const dictionary = {
     },
     shareCard: {
       title: "Wrapped {{year}}",
-      contributions: "Total Contributions",
+      contributions: "CONTRIBUTIONS",
       stars: "Stars Earned",
       prs: "Pull Requests",
       topLanguage: "Top Language",
